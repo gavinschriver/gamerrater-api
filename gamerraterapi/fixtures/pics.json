@@ -1,0 +1,12 @@
+[
+    {
+        "model": "gamerraterapi.pics",
+        "pk": 1,
+        "fields": {
+            "caption" : "just me and me droogs",
+            "image" : "/media/download.jpg",
+            "player" : 1,
+            "game": 3
+        }
+    }
+]

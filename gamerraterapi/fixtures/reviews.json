@@ -1,0 +1,32 @@
+[
+    {
+        "model": "gamerraterapi.review",
+        "pk": 1,
+        "fields": { 
+            "timestamp": "2020-09-30T13:24:27.172Z",
+            "text": "this was a great game you love to see it folks",
+            "player": 1,
+            "game": 3
+        }
+    },
+    {
+        "model": "gamerraterapi.review",
+        "pk": 2,
+        "fields": { 
+            "timestamp": "2019-01-30T15:23:22.172Z",
+            "text": "i stopped playing this game to watch some bbal lol but it was okay",
+            "player": 1,
+            "game": 4
+        }
+    },
+    {
+        "model": "gamerraterapi.review",
+        "pk": 3,
+        "fields": { 
+            "timestamp": "2020-11-03T13:24:27.172Z",
+            "text": "HIGHLY ENJOYED 5 STARS WOULD PLAY AGAIN",
+            "player": 1,
+            "game": 2
+        }
+    }
+]

@@ -1,0 +1,67 @@
+[
+    {
+        "model": "gamerraterapi.game",
+        "pk": 1,
+        "fields": {
+            "title": "BANG",
+            "description": "LA CARDAGAMA MAS FINA",
+            "designer": "La Vinnie Videci",
+            "year_realeased": 1997,
+            "number_of_players": 8,
+            "time_to_play": "1000",
+            "age_recommendation": 12
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 2,
+        "fields": {
+            "title": "Yacht-ZEE",
+            "description": "Relax. on a boat. play a game",
+            "designer": "Donatella Versaci",
+            "year_realeased": 1997,
+            "number_of_players": 4,
+            "time_to_play": "2300",
+            "age_recommendation": 5
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 3,
+        "fields": {
+            "title": "D&D&D",
+            "description": "Dungeons and Dragons and DONUTS",
+            "designer": "Some wiseguy",
+            "year_realeased": 2004,
+            "number_of_players": 4,
+            "time_to_play": "4500",
+            "age_recommendation": 15
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 4,
+        "fields": {
+            "title": "Jungle Rumble",
+            "description": "Time to rumble. In the fricken jungle",
+            "designer": "Marvel Smash Bros Inc",
+            "year_realeased": 1987,
+            "number_of_players": 2,
+            "time_to_play": "90100",
+            "age_recommendation": 14
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 5,
+        "fields": {
+            "title": "SnackTime",
+            "description": "Everybody needs a lil treat yeah?",
+            "designer": "Afsnackinstan",
+            "year_realeased": 2000,
+            "number_of_players": 15,
+            "time_to_play": "1000",
+            "age_recommendation": 5
+        }
+    }
+]
