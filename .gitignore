@@ -1,0 +1,12 @@
+db.sqlite3
+Rater DB.session.sql
+.DS_Store
+node_modules
+__pycache__
+*.pyc
+bin
+obj
+*.db
+*.sqlite3
+.vscode
+dist
