@@ -63,5 +63,44 @@
             "time_to_play": "1000",
             "age_recommendation": 5
         }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 5,
+        "fields": {
+            "title": "SnackTime",
+            "description": "Everybody needs a lil treat yeah?",
+            "designer": "Afsnackinstan",
+            "year_realeased": 2000,
+            "number_of_players": 15,
+            "time_to_play": "1000",
+            "age_recommendation": 5
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 6,
+        "fields": {
+            "title": "RAGE",
+            "description": "",
+            "designer": "dis boy",
+            "year_realeased": 1990,
+            "number_of_players": 15,
+            "time_to_play": "20000",
+            "age_recommendation": 20
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 7,
+        "fields": {
+            "title": "NEXFLIX N PILLZ",
+            "description": "",
+            "designer": "that gal",
+            "year_realeased": 2020,
+            "number_of_players": 10,
+            "time_to_play": "01:20:20",
+            "age_recommendation": 20
+        }
     }
 ]
