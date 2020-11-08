@@ -1,5 +1,3 @@
-from django.db.models.expressions import Case
-from gamerraterapi.models.game import Game
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import IntegerField

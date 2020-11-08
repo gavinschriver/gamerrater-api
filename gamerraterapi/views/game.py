@@ -1,10 +1,11 @@
+from gamerraterapi.models.player import Player
 from django.http.response import HttpResponseServerError
 from rest_framework import status
 from rest_framework.relations import HyperlinkedIdentityField
 from rest_framework.viewsets import ViewSet
 from rest_framework import serializers
 from rest_framework.response import Response
-from gamerraterapi.models import Game, Category, GameCategory
+from gamerraterapi.models import Game, Category, GameCategory, Rating
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +16,7 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Game
         url = HyperlinkedIdentityField(view_name='game', lookup_field='id')
-        fields = ('id', 'title', 'description', 'designer', 'year_realeased', 'number_of_players', 'time_to_play', 'age_recommendation', 'url')
+        fields = ('rated', 'id', 'average_rating', 'title', 'description', 'designer', 'year_realeased', 'number_of_players', 'time_to_play', 'age_recommendation', 'url')
         depth = 1
 
 
@@ -54,11 +55,16 @@ class GamesViewSet(ViewSet):
             game = Game.objects.get(pk=pk)
             categories = Category.objects.all()
             gamescategories = GameCategory.objects.filter(game_id=pk)
+            player = Player.objects.get(user=req.auth.user)
+            try:
+                Rating.objects.get(player=player, game=game)
+                game.rated = True
+            except:
+                game.rated = False
             categoryIds = []
             for gc in gamescategories:
                 categoryIds.append(gc.category_id)
             matchingCategories = ([c for c in categories if c.id in categoryIds])
-            
             gameserializer = GameSerializer(game, context={'request': req})
             categoriesserializer = CategorySerializer(matchingCategories, many=True, context={'request': req})
             gameDict = gameserializer.data
