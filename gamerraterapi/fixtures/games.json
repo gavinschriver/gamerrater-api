@@ -8,7 +8,7 @@
             "designer": "La Vinnie Videci",
             "year_realeased": 1997,
             "number_of_players": 8,
-            "time_to_play": "1000",
+            "time_to_play": 20000,
             "age_recommendation": 12
         }
     },
@@ -21,7 +21,7 @@
             "designer": "Donatella Versaci",
             "year_realeased": 1997,
             "number_of_players": 4,
-            "time_to_play": "2300",
+            "time_to_play": 2004533,
             "age_recommendation": 5
         }
     },
@@ -34,7 +34,7 @@
             "designer": "Some wiseguy",
             "year_realeased": 2004,
             "number_of_players": 4,
-            "time_to_play": "4500",
+            "time_to_play": 2939433,
             "age_recommendation": 15
         }
     },
@@ -47,7 +47,7 @@
             "designer": "Marvel Smash Bros Inc",
             "year_realeased": 1987,
             "number_of_players": 2,
-            "time_to_play": "90100",
+            "time_to_play":293944,
             "age_recommendation": 14
         }
     },
@@ -60,8 +60,47 @@
             "designer": "Afsnackinstan",
             "year_realeased": 2000,
             "number_of_players": 15,
-            "time_to_play": "1000",
+            "time_to_play": 233445,
             "age_recommendation": 5
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 5,
+        "fields": {
+            "title": "SnackTime",
+            "description": "Everybody needs a lil treat yeah?",
+            "designer": "Afsnackinstan",
+            "year_realeased": 2000,
+            "number_of_players": 15,
+            "time_to_play": 23000,
+            "age_recommendation": 5
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 6,
+        "fields": {
+            "title": "RAGE",
+            "description": "",
+            "designer": "dis boy",
+            "year_realeased": 1990,
+            "number_of_players": 15,
+            "time_to_play": 23300,
+            "age_recommendation": 20
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 7,
+        "fields": {
+            "title": "NEXFLIX N PILLZ",
+            "description": "",
+            "designer": "that gal",
+            "year_realeased": 2020,
+            "number_of_players": 10,
+            "time_to_play": 34000,
+            "age_recommendation": 20
         }
     }
 ]
