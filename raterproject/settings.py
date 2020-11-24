@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 #MEDIA_ROOT is the absolute path to your files as calculated by BASE_DIR variable
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#
+# URL by which media items are accessible 
 MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production

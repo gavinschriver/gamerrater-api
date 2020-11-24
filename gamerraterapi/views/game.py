@@ -1,3 +1,4 @@
+from gamerraterapi.models.pics import Pics
 from gamerraterapi.models.player import Player
 from django.http.response import HttpResponseServerError
 from rest_framework import status
@@ -6,11 +7,17 @@ from rest_framework.viewsets import ViewSet
 from rest_framework import serializers
 from rest_framework.response import Response
 from gamerraterapi.models import Game, Category, GameCategory, Rating
+from django.db.models import Q
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'label')
+
+class PicsGameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pics
+        fields = ['id', 'image']
 
 class GameSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -18,7 +25,6 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
         url = HyperlinkedIdentityField(view_name='game', lookup_field='id')
         fields = ('rated', 'id', 'average_rating', 'title', 'description', 'designer', 'year_realeased', 'number_of_players', 'time_to_play', 'age_recommendation', 'url')
         depth = 1
-
 
 class GamesViewSet(ViewSet):
     def create(self, req):
@@ -43,32 +49,34 @@ class GamesViewSet(ViewSet):
             return Response({'message': 'something didnt work'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-        
-
     def list(self, req):
         games = Game.objects.all()
+
+        search_term = self.request.query_params.get('q', None)
+        if search_term is not None:
+            if search_term == "":
+                games = {}    
+            else:
+                games = games.filter(Q(title__contains=search_term) | Q(description__contains=search_term) | Q(designer__contains=search_term))
+
         serializer = GameSerializer(games, many=True, context={'request': req})
         return Response(serializer.data)
 
     def retrieve(self, req, pk=None):
         try:
             game = Game.objects.get(pk=pk)
-            categories = Category.objects.all()
-            gamescategories = GameCategory.objects.filter(game_id=pk)
+            # categories = Category.objects.all()
+            # using related name for category on GameCategory model ('GamesCategories')
+            matchingCategories = Category.objects.filter(combo__game=game)
             player = Player.objects.get(user=req.auth.user)
-            try:
-                Rating.objects.get(player=player, game=game)
-                game.rated = True
-            except:
-                game.rated = False
-            categoryIds = []
-            for gc in gamescategories:
-                categoryIds.append(gc.category_id)
-            matchingCategories = ([c for c in categories if c.id in categoryIds])
+            pics = Pics.objects.filter(game=game)
+
             gameserializer = GameSerializer(game, context={'request': req})
             categoriesserializer = CategorySerializer(matchingCategories, many=True, context={'request': req})
+            picsserialzier = PicsGameSerializer(pics, many=True, context={'request': req})
             gameDict = gameserializer.data
             gameDict["categories"] = categoriesserializer.data
+            gameDict["pics"] = picsserialzier.data
             return Response(gameDict)
         except Exception as ex:
             return HttpResponseServerError
