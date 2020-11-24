@@ -8,7 +8,18 @@ import uuid
 import base64
 from django.core.files.base import ContentFile
 
-class PicsViewSet(ViewSet):
+class GamePicsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ['id', 'title']
+
+class PicSerializer(serializers.ModelSerializer):
+    game = GamePicsSerializer(many=False)
+    class Meta:
+        model = Pics
+        fields = ['id', 'image', 'game']
+
+class PicsViewSet(ViewSet):        
     def list(self, request):
         return Response({'message':'testresponse'}, status=status.HTTP_200_OK)
 
@@ -28,9 +39,12 @@ class PicsViewSet(ViewSet):
             data = ContentFile(base64.b64decode(imagestr), name=f'{request.data["gameId"]}-{uuid.uuid4()}.{fileExt}')
             pic.image = data
             pic.save()
-            return Response({'message':'i hope it was created!'}, status=status.HTTP_201_CREATED)
+            serializer = PicSerializer(pic, many=False, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         except:
             return Response({'message': 'did not save'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    
 
 
 
