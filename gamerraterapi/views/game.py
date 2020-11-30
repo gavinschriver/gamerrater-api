@@ -6,7 +6,7 @@ from rest_framework.relations import HyperlinkedIdentityField
 from rest_framework.viewsets import ViewSet
 from rest_framework import serializers
 from rest_framework.response import Response
-from gamerraterapi.models import Game, Category, GameCategory, Rating
+from gamerraterapi.models import Game, Category, GameCategory
 from django.db.models import Q
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -20,11 +20,11 @@ class PicsGameSerializer(serializers.ModelSerializer):
         fields = ['id', 'image']
 
 class GameSerializer(serializers.HyperlinkedModelSerializer):
+    categories = CategorySerializer(many=True)
     class Meta:
         model = Game
         url = HyperlinkedIdentityField(view_name='game', lookup_field='id')
-        fields = ('rated', 'id', 'average_rating', 'title', 'description', 'designer', 'year_realeased', 'number_of_players', 'time_to_play', 'age_recommendation', 'url')
-        depth = 1
+        fields = ('rated', 'id', 'average_rating', 'title', 'description', 'designer', 'year_realeased', 'number_of_players', 'time_to_play', 'age_recommendation', 'url', 'categories')
 
 class GamesViewSet(ViewSet):
     def create(self, req):
