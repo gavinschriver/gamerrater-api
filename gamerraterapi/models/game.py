@@ -1,6 +1,7 @@
 from gamerraterapi.models.rating import Rating
 from django.db import models
 from django.db.models.fields import CharField, IntegerField
+from gamerraterapi.models.category import Category
 
 class Game(models.Model):
     title = CharField(max_length=50)
@@ -29,6 +30,10 @@ class Game(models.Model):
     @rated.setter
     def rated(self, value):
         self.__rated = value
+
+    @property 
+    def categories(self):
+        return Category.objects.filter(combo__game=self)
 
 
     
